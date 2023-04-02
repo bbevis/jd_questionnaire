@@ -21,11 +21,7 @@ def rand_questions():
     rand_questions = random.sample(questions, n_questions)
 
     # for each firm, select 3 questions into a list
-    values = []
-
-    for i in range(n_firms):
-        values.append(rand_questions[:3])
-        rand_questions = rand_questions[3:]
+    values = get_values(n_firms, rand_questions)
 
     keys = ['firm' + str(i+1) for i in range(n_firms)]
 
@@ -33,6 +29,14 @@ def rand_questions():
     questions = json.dumps(dict(zip(keys, values)))
 
     return questions
+
+def get_values(n_firms, rand_questions):
+    values = []
+
+    for i in range(n_firms):
+        values.append(rand_questions[:3])
+        rand_questions = rand_questions[3:]
+    return values
 
 if __name__ == "__main__":
     app.run(debug=True)
