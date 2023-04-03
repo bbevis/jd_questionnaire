@@ -20,17 +20,17 @@ def rand_questions():
     questions = qs.questions
     rand_questions = random.sample(questions, n_questions)
 
-    # for each firm, select 3 questions into a list
+    # get key values of rando questions per firm
     values = get_values(n_firms, rand_questions)
-
     keys = ['firm' + str(i+1) for i in range(n_firms)]
 
-    # to convert lists to json dictionary
-    questions = json.dumps(dict(zip(keys, values)))
-
-    return questions
+    return json.dumps(dict(zip(keys, values))) # convert to json dictionary
 
 def get_values(n_firms, rand_questions):
+
+    # add first 3 elements into vales
+    # remove those same elementsfrom rand_questions
+
     values = []
 
     for i in range(n_firms):
